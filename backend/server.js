@@ -5,6 +5,7 @@ const app = express();
 app.get("/api/data/metar", (req, res) => {
   try {
     res.send("working... data sent");
+    //hello
   } catch {}
 });
 
