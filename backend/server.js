@@ -1,11 +1,10 @@
-import { log } from "console";
 import express from "express";
 
 const app = express();
 
 app.get("/api/data/metar", (req, res) => {
   try {
-    res.send();
+    res.send("working... data sent");
   } catch {}
 });
 
