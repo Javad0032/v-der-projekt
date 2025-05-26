@@ -1,14 +1,23 @@
-import { log } from "console";
 import express from "express";
+import axios from "axios";
+import cors from "cors";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
+const PORT = 5000;
 
-app.get("/api/data/metar", (req, res) => {
+app.use(cors());
+
+app.get("/api/data/metar", async (req, res) => {
   try {
-    res.send();
+    res.send("working... data sent");
+    //hello
   } catch {}
 });
 
-app.listen(8000, () => {
-  console.log(" server running on the http://localhost:8000/");
+app.listen(PORT, () => {
+  console.log(`🚀 Servern körs på http://localhost:${PORT}`);
 });
+
