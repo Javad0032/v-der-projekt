@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -7,12 +7,22 @@ import "./App.css";
 import WeatherCard from "./Components/WeatherCard";
 
 function App() {
-  const [inputValue, setInputValue] = useState("");
-  
+  const [weather, setWeather] = useState(null);
+  const inputRef = useRef();
 
-  const handleSearch = () => {
-    //coonsole.log();
-  }
+
+  const handleSearch = async () => {
+    const value = inputRef.current.value;
+
+    try {
+      const response = await fetch(`http://localhost:5000/api/data/metar?query=${encodeURIComponent(value)}`);
+      const data = await response.json();
+      setWeather(data);
+      console.log(weather);
+    } catch (error) {
+      console.error('Api could not fetch:', error);
+    }
+  };
 
 
   return (
@@ -25,14 +35,14 @@ function App() {
           </div>
 
           <div className="flex flex-col gap-4 w-3/4">
-            <input type="text" className="bg-[#f7f7f7] h-10 p-2 rounded" aria-placeholder="zxaza" placeholder="Plats" />
+            <input ref={inputRef} type="text" className="bg-[#f7f7f7] h-10 p-2 rounded" aria-placeholder="zxaza" placeholder="Plats" />
 
             <div className="flex items-center gap-2">
               <button onClick={() => setCount((count) => count + 1)} className="w-1/2 bg-[#1a1a1a] text-white" >
                 Rensa
               </button>
 
-              <button onClick={() => handleSearch() } className="w-1/2 bg-[#f9f9f9]">
+              <button onClick={() => handleSearch()} className="w-1/2 bg-[#f9f9f9]">
                 Sök
               </button>
             </div>
