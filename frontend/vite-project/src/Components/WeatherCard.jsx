@@ -49,8 +49,6 @@ function WeatherCard() {
                             </div>
                         </div>
                     </div>
-
-
                 </div>
 
 

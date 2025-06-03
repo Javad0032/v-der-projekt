@@ -7,7 +7,13 @@ import "./App.css";
 import WeatherCard from "./Components/WeatherCard";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [inputValue, setInputValue] = useState("");
+  
+
+  const handleSearch = () => {
+    //coonsole.log();
+  }
+
 
   return (
     <>
@@ -26,7 +32,7 @@ function App() {
                 Rensa
               </button>
 
-              <button onClick={() => setCount((count) => count + 1)} className="w-1/2 bg-[#f9f9f9]">
+              <button onClick={() => handleSearch() } className="w-1/2 bg-[#f9f9f9]">
                 Sök
               </button>
             </div>
