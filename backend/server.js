@@ -9,13 +9,19 @@ const app = express();
 const PORT = 5000;
 
 app.use(cors());
-//      "https://aviationweather.gov/api/data/metar",
 
 app.get("/api/data/metar", async (req, res) => {
-  //console.log(`Hämtar METAR-data för station: ${station}`);
+  const station = req.query.q || "Stockholm";
+
+  if (!station) {
+    return res.status(400).json({ error: "Plats saknas i query (q)" });
+  }
+
   try {
     const response = await axios.get(
-      "http://api.weatherapi.com/v1/current.json?key=745d65f89f5a427998093630250206&q=London&aqi=no",
+      `http://api.weatherapi.com/v1/current.json?key=${
+        process.env.WEATHER_API_KEY
+      }&q=${encodeURIComponent(station)}&aqi=no`,
       {
         headers: {
           "User-Agent": "Mozilla/5.0",
@@ -25,8 +31,8 @@ app.get("/api/data/metar", async (req, res) => {
 
     res.json(response.data);
   } catch (error) {
-    console.error("Error fetching METAR-data:", error);
-    res.status(500).json({ error: "Could not fetch data" });
+    console.error("Error fetching METAR-data:", error.message);
+    res.status(500).json({ error: "Kunde inte hämta data" });
   }
 });
 
