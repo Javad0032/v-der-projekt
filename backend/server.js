@@ -8,7 +8,10 @@ dotenv.config();
 const app = express();
 const PORT = 5000;
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true,
+}));
 
 app.get("/api/data/metar", async (req, res) => {
   const station = req.query.q || "Stockholm";
