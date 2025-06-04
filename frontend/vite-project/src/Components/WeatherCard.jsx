@@ -8,7 +8,7 @@ function WeatherCard() {
 
                 <div>
                     <h4 className="text-[#8a8a8a]">Linköping, Sweden</h4>
-                    <div className="flex items-center gap-24 overflow-x-auto overflow-y-hidden">
+                    <div className="flex items-center gap-24 overflow-hidden">
                         <div className="flex flex-col gap-4">
                             <h4 className="text-[#8a8a8a]">12:35</h4>
                             <div className="flex items-center gap-8">

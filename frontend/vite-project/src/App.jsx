@@ -15,7 +15,7 @@ function App() {
     const value = inputRef.current.value;
 
     try {
-      const response = await fetch(`http://localhost:5000/api/data/metar?query=${encodeURIComponent(value)}`);
+      const response = await fetch(`http://localhost:5000/api/data/metar?q=${encodeURIComponent(value)}`);
       const data = await response.json();
       setWeather(data);
       console.log(weather);
@@ -52,6 +52,13 @@ function App() {
 
 
         <div className="w-3/4">
+          {weather && (
+            <div>
+              <h2>{weather.location.name}, {weather.location.country}</h2>
+              <p>{weather.current.temp_c}°C</p>
+            </div>
+          )}
+
           <WeatherCard></WeatherCard>
         </div>
 
