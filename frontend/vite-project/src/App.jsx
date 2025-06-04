@@ -27,7 +27,9 @@ function App() {
     }
   };
 
-
+useEffect(() => {
+  handleSearch();
+}, []);
   return (
     <>
       <div className="h-screen w-full flex gap-12">
