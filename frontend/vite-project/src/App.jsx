@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -8,12 +8,12 @@ import WeatherCard from "./Components/WeatherCard";
 
 function App() {
   const [weather, setWeather] = useState(null);
+  const [loading, setLoading] = useState(false);
   const inputRef = useRef();
-
 
   const handleSearch = async () => {
     const value = inputRef.current.value;
-
+    setLoading(true);
     try {
       const response = await fetch(`http://localhost:5000/api/data/metar?q=${encodeURIComponent(value)}`);
       const data = await response.json();
@@ -21,13 +21,17 @@ function App() {
       console.log(weather);
     } catch (error) {
       console.error('Api could not fetch:', error);
+    } finally {
+      setLoading(false);
     }
   };
-
+  useEffect(() => {
+    handleSearch();
+  }, []);
 
   return (
     <>
-      <div className="h-screen flex gap-12 p-8">
+      <div className="h-screen w-full flex gap-12">
         <div className="w-1/4 flex flex-col items-center justify-center gap-12">
 
           <div>
@@ -45,21 +49,14 @@ function App() {
               <button onClick={() => handleSearch()} className="w-1/2 bg-[#f9f9f9]">
                 Sök
               </button>
+
             </div>
           </div>
 
         </div>
 
-
         <div className="w-3/4">
-          {weather && (
-            <div>
-              <h2>{weather.location.name}, {weather.location.country}</h2>
-              <p>{weather.current.temp_c}°C</p>
-            </div>
-          )}
-
-          <WeatherCard></WeatherCard>
+          <WeatherCard weather={weather} ></WeatherCard>
         </div>
 
       </div>
