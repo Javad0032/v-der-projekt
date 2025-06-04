@@ -1,15 +1,7 @@
-<<<<<<< HEAD
-import { useState, useRef } from "react";
-
-import "./App.css";
-
-=======
 import { useState, useRef, useEffect } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+
 import "./App.css";
 
->>>>>>> 8251c7cbc7726e8e9d9f6a849604b1d915539b57
 import WeatherCard from "./Components/WeatherCard";
 
 function App() {
@@ -28,22 +20,15 @@ function App() {
       setWeather(data);
       console.log(weather);
     } catch (error) {
-<<<<<<< HEAD
       console.error("Api could not fetch:", error);
-    }
-  };
-
-=======
-      console.error('Api could not fetch:', error);
     } finally {
       setLoading(false);
     }
   };
 
-useEffect(() => {
-  handleSearch();
-}, []);
->>>>>>> 8251c7cbc7726e8e9d9f6a849604b1d915539b57
+  useEffect(() => {
+    handleSearch();
+  }, []);
   return (
     <>
       <div className="h-screen w-full flex gap-12">
@@ -57,14 +42,6 @@ useEffect(() => {
               ref={inputRef}
               type="text"
               className="bg-[#f7f7f7] h-10 p-2 rounded"
-<<<<<<< HEAD
-              aria-placeholder="zxaza"
-              placeholder="Plats"
-            />
-
-            <div className="flex items-center gap-2">
-              <button className="w-1/2 bg-[#1a1a1a] text-white">Rensa</button>
-=======
               placeholder="Plats"
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
@@ -74,13 +51,16 @@ useEffect(() => {
             />
 
             <div className="flex items-center gap-2">
+              {/* "Rensa"-knapp: Rensar väderdata och tömmer inputfältet */}
               <button
-                onClick={() => setCount((count) => count + 1)}
                 className="w-1/2 bg-[#1a1a1a] text-white"
+                onClick={() => {
+                  setWeather(null);
+                  inputRef.current.value = "";
+                }}
               >
                 Rensa
               </button>
->>>>>>> 8251c7cbc7726e8e9d9f6a849604b1d915539b57
 
               <button
                 onClick={() => handleSearch()}
@@ -88,26 +68,12 @@ useEffect(() => {
               >
                 Sök
               </button>
-
             </div>
           </div>
         </div>
 
         <div className="w-3/4">
-<<<<<<< HEAD
-          {weather && (
-            <div>
-              <h2>
-                {weather.location.name}, {weather.location.country}
-              </h2>
-              <p>{weather.current.temp_c}°C</p>
-            </div>
-          )}
-
-          <WeatherCard></WeatherCard>
-=======
-          <WeatherCard weather={weather} ></WeatherCard>
->>>>>>> 8251c7cbc7726e8e9d9f6a849604b1d915539b57
+          <WeatherCard weather={weather}></WeatherCard>
         </div>
       </div>
     </>
