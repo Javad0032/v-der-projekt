@@ -19,9 +19,7 @@ app.get("/api/data/metar", async (req, res) => {
 
   try {
     const response = await axios.get(
-      `http://api.weatherapi.com/v1/current.json?key=${
-        process.env.WEATHER_API_KEY
-      }&q=${encodeURIComponent(station)}&aqi=no`,
+      `http://api.weatherapi.com/v1/current.json?key=745d65f89f5a427998093630250206&q=${encodeURIComponent(station)}&aqi=no`,
       {
         headers: {
           "User-Agent": "Mozilla/5.0",
