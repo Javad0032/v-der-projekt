@@ -34,7 +34,7 @@ function App() {
       <div className="h-screen w-full flex gap-12">
         <div className="w-1/4 flex flex-col items-center justify-center gap-12">
           <div>
-            <h1>Väder app</h1>
+            <h1>WeatherApp</h1>
           </div>
 
           <div className="flex flex-col gap-4 w-3/4">
@@ -42,7 +42,7 @@ function App() {
               ref={inputRef}
               type="text"
               className="bg-[#f7f7f7] h-10 p-2 rounded"
-              placeholder="Plats"
+              placeholder="Location"
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   handleSearch();
@@ -59,14 +59,14 @@ function App() {
                   inputRef.current.value = "";
                 }}
               >
-                Rensa
+                Clear
               </button>
 
               <button
                 onClick={() => handleSearch()}
                 className="w-1/2 bg-[#f9f9f9]"
               >
-                Sök
+                Search
               </button>
             </div>
           </div>
